@@ -133,22 +133,22 @@ namespace JavaInterface
 
 		double sum()
 		{
-			return reduce([](const T& item1, const T& item2) {return item1 + item2; }, 0);
+			return reduce(Sum<T>, 0);
 		}
 
 		double prod()
 		{
-			return reduce([](const T& item1, const T& item2) {return item1 * item2; }, 1);
+			return reduce(Mul<T>, 1);
 		}
 
 		T max()
 		{
-			return reduce([](auto& item1, auto& item2) {return item1 > item2 ? item1 : item2; }, *ds.begin());
+			return reduce(Max<T>, *ds.begin());
 		}
 
 		T min()
 		{
-			return reduce([](auto& item1, auto& item2) {return item1 > item2 ? item2 : item1; }, *ds.begin());
+			return reduce(Min<T>, *ds.begin());
 		}
 
 

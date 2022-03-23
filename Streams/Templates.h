@@ -75,6 +75,26 @@ namespace Templates
 		return a < b ? a : b;
 	}
 
+	template<class T = int>
+	T Max(const T& a, const T& b)
+	{
+		return a < b ? b : a;
+	}
+
+	template<class T>
+	T Sum(const T& a, const T& b)
+	{
+		return a + b;
+	}
+
+	template<class T>
+	T Mul(const T& a, const T& b)
+	{
+		return a * b;
+	}
+
+	
+
 	
 	
 }
