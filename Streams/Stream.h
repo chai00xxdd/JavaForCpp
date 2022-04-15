@@ -166,7 +166,7 @@ namespace JavaInterface
 	};
 
 
-	/*This Templates functions are for not using <T> when creating the classs its looks better that way
+	/*This Templates functions are for not using <T> when creating the Stream its looks better that way
 	otherwise for string we will need to do StreamClass<char>(str);
 	*/
 

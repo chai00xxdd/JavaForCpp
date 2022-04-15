@@ -62,7 +62,7 @@ int main()
 	}
 
 	//modify an array
-	Stream(vec).forEach([&vec](int index, auto& item) {vec[index] = item += 10; });
+	Stream(vec).forEach([&vec](int index, auto& item) {vec[index] = item + 10; });
 	vec = Stream(vec).map<int>([](int x) {return x + 10; }).toVector();
 
 
