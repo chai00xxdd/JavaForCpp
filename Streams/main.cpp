@@ -9,14 +9,36 @@
 #include"Python.h"
 using namespace std;
 using namespace Templates;
+#include"String.h"
 
+class Person
+{
+public:
+	string name;
+	int id;
+	string password;
+};
 
+class PersonDTO
+{
+public:
+	PersonDTO() {};
+	string name;
+	int id;
+	PersonDTO(const string&name,int id):name(name),id(id){}
+};
 
 int main()
 {
 	/*Some Examples*/
+	String str = "how.are.you.dude";
+	Stream(str.split('.')).forEach(print<string>).then(dropLine);
+	list<Person> persons = { {"or",1,"meow"},{"trysi",2,"meowzit"} };
+	list<PersonDTO> personsDTO = Stream(persons).map<PersonDTO>([](auto& p) {return PersonDTO{ p.name,p.id }; }).toList();
+	Stream(personsDTO).map<string>([](auto& p) {return p.name; }).forEach(print<string>).then(dropLine);
+
 	
-	DynamicArray<int> haha = { 1,2,3 };
+	DynamicArray<int> haha = { 3,2,1 };
 	vector<int> vec = { 10,20,30 };
 	auto vec_s = Stream(vec);
 	cout << "equals = " << (vec_s.equals(vector<int>{ 10, 20, 30 }) ? "true" : "false") << endl;
@@ -42,9 +64,6 @@ int main()
 	//modify an array
 	Stream(vec).forEach([&vec](int index, auto& item) {vec[index] = item += 10; });
 	vec = Stream(vec).map<int>([](int x) {return x + 10; }).toVector();
-
-	
-
 
 
 }

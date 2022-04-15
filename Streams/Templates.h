@@ -42,11 +42,19 @@ namespace Templates
 		bool condition;
 	public: 
 		If(bool condition):condition(condition){}
-		void then(std::function<void(void)> func)
+		If& then(std::function<void(void)> func)
 		{
+
 			if (condition)
 				func();
+			return *this;
 		}
+		
+		If  Not()
+		{
+			return If(!condition);
+		}
+
 		void elseDo(std::function<void(void)> func)
 		{
 			if (!condition)

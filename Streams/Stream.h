@@ -23,7 +23,6 @@ namespace JavaInterface
 		template<class DS>
 		StreamClass(const DS& ds) :ds(ds.begin(), ds.end()) {}
 
-		
 		StreamClass<T> filter(std::function<bool(const T&item)> pred)
 		{
 			return filter([&](int index, const T& item) {return pred(item); });
@@ -59,15 +58,22 @@ namespace JavaInterface
 			return *this;
 		}
 
-		void forEach(const std::function<void(int index, T& item)>& callback)
+		StreamClass<T>& forEach(const std::function<void(int index, T& item)>& callback)
 		{
-			enumrate(callback);
+			return enumrate(callback);
 		}
 
-		void enumrate(const std::function<void(int index, T& item)>& callback)
+		StreamClass<T>& enumrate(const std::function<void(int index, T& item)>& callback)
 		{
 			int index = 0;
 			forEach([&](T& item) {callback(index++, item); });
+			return *this;
+		}
+
+		StreamClass<T>& sort()
+		{
+			std::sort(ds.begin(), ds.end());
+			return *this;
 		}
 
 		int size() { return ds.size(); }
@@ -101,6 +107,11 @@ namespace JavaInterface
 		vector<T> toVector()
 		{
 			return vector<T>(ds.begin(), ds.end());;
+		}
+
+		list<T> toList()
+		{
+			return list<T>(ds.begin(), ds.end());
 		}
 
 		StreamClass<T> reverse()
